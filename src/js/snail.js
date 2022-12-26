@@ -23,7 +23,7 @@ var design = anime({
   
   anime({
     targets: '#dust-paarticle path',
-    translateY: [10, -150],
+    translateY: [10, -100],
     direction: 'alternate',
     loop: true,
     delay: function(el, i, l) {

@@ -36,6 +36,8 @@
 .dust-paarticle
 {
   position: absolute;
+  top: 0;
+  left: 0;
     width: 100%;
 }
 
@@ -43,6 +45,7 @@
 {
   position:absolute;
   top: -36px;
+  left: 0;
   width: 100%;
 
  
@@ -76,7 +79,7 @@ animation: swing ease-in-out .5s infinite alternate;
 #dust-paarticle path
 {
   transform-box: fill-box;
-    transform-origin: center;
+    transform-origin: right;
 }
 
 /*************swing************/
