@@ -35,33 +35,60 @@
     return _class;
   })();
 
-  const targetSelector = '.js-overlay-modal';
-  const targetState = 'active';
-
-  const overlay = document.querySelector(targetSelector);
+  const backdrop = document.querySelector('.js-overlay-modal');
   const header = document.querySelector('.header');
+  const headerBtnBuyNow = document.querySelector('.header__btn');
+  const modals = Array.from(document.getElementsByClassName('modal'));
+  const menuMobile = document.querySelector('[data-mobile-menu]');
 
-  observeObject.init(targetSelector, () => {
-    const modalIsOpen = overlay.classList.contains(targetState);
+  observeObject.init('.js-overlay-modal', () => {
+    const mobileIsOpenned = !menuMobile.classList.contains(
+      'mobile-menu--hidden'
+    );
+    const modalIsOpenned =
+      backdrop.classList.contains('active') || mobileIsOpenned;
     const headerIsShaded = header.classList.contains('header--shaded');
+    //
+    // toggle Buy now anim
+    //
+    headerBtnBuyNow.style.animation = modalIsOpenned ? 'unset' : null;
+    //
+    // body scroll lock
+    //
+    toggleScroll(modalIsOpenned);
+    header.style.display = headerIsShaded && modalIsOpenned ? 'none' : null;
+    //
+    // fix top for modal
+    //
+    if (modalIsOpenned) {
+      const viewportHeight = document.documentElement.clientHeight;
 
-    toggleScroll(modalIsOpen);
-    // shaded header -> hiding
-    header.style.display = headerIsShaded && modalIsOpen ? 'none' : null;
+      let pos, modalHeight;
+      modals.forEach(modal => {
+        //
+        modal.style.top = null;
+        modal.style.transform = null;
+        //
+        // .modal.active found
+        if (modal.classList.contains('active')) {
+          pos = modal.getBoundingClientRect();
+          modalHeight = pos.height;
 
-    // modal shown
-    const activeModal = document.querySelector('.modal.active');
-
-    const pos = activeModal.getBoundingClientRect();
-    const activeModalHeight = pos.height;
-    const viewportHeight = document.documentElement.clientHeight;
-
-    if (viewportHeight <= activeModalHeight) {
-      activeModal.style.top = 0;
-      activeModal.style.transform = 'translate(-50%, 0)';
-    } else {
-      activeModal.style.top = null;
-      activeModal.style.transform = null;
+          if (viewportHeight <= modalHeight) {
+            modal.style.top = 0;
+            modal.style.transform = 'translate(-50%, 0)';
+          }
+        }
+      });
     }
   });
 })();
+
+// const isHidden = el => {
+//   const styles = window.getComputedStyle(el);
+//   return (
+//     styles.display === 'none' ||
+//     styles.visibility === 'hidden' ||
+//     styles.opacity === '0'
+//   );
+// };

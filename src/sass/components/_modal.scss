@@ -6,8 +6,28 @@ textarea {
   /* margin: 1rem 0; */
   padding: 8px 12px;
   box-sizing: border-box;
-  border: 1px solid #84a178;
+  border: 1px solid #84A178;
+  transition: 0.5s;
+
 }
+
+input:focus,
+textarea:focus {
+  outline: 0;
+  border: 1px solid #F8D24E;
+}
+
+
+input:required:focus:valid {
+  background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% #84A178;
+
+}
+
+input:focus:invalid {
+  background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% rgb(238, 211, 201);
+  border-color: red;
+}
+
 
 textarea {
   resize: none;
@@ -32,6 +52,10 @@ textarea {
 /* Стилі для модальних вікон */
 
 .modal {
+
+  /*збільшення*/
+ touch-action: pan-y pinch-zoom;
+
   /* ховаємо вікна  */
   opacity: 0;
   visibility: hidden;
@@ -60,9 +84,17 @@ textarea {
   border: 2px solid #f8d24e;
   border-radius: 10px;
 
+		@media screen and (max-width: 767px) {
+				width: 95%;
+					max-width: 280px;
+					// height: 95%;
+					max-height: 609px;
+					overflow: auto;
+					
+			}
+}
 
-  /* scroll effect */
-  overflow-y: auto;
+
 
 @media screen and (min-width: 768px) {
   .modal {
@@ -71,7 +103,7 @@ textarea {
 
   }
 }
- }
+
 /* Стилі для активних класів підложки і вікна */
 
 .modal.active,
@@ -99,9 +131,11 @@ textarea {
 }
 
 .modal__container {
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   margin: 28px 30px 24px 30px;
+  overflow-y: scroll;
 }
 
 .modal_video {
@@ -268,14 +302,19 @@ textarea {
   margin: 0 auto;
 }
 
-.btn-prim__franc {
+.btn_location{
+  display: inline-block;
+}
+
+.btn-prim__franc{
   margin-bottom: 28px;
   margin-left: auto;
   margin-right: auto;
 }
 
+
 @media screen and (min-width: 768px) {
-  .btn-prim__franc {
+  .btn-prim__franc{
     margin-bottom: 32px;
   }
 }

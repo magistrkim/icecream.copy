@@ -33,32 +33,35 @@
         margin-bottom: 32px;
     }
 }
+
+
 .dust-paarticle
 {
   position: absolute;
   top: 0;
   left: 0;
-    width: 100%;
+  width: 100%;
+  pointer-events: none;
+  
+    @media screen and (min-width:768px){
+    height: 500px;
 }
-
+}
 #snell
 {
   position:absolute;
   top: -36px;
-  left: 0;
+  right: 0;
   width: 100%;
 
  
    @media (min-width: 768px) {
     top: -20px;
-    right: -100px;
    }
    @media (min-width: 1200px) {
     top: -10px;
-    right: -100px;
    }
 }
-
 #eye1
 {
 animation: swing ease-in-out .6s infinite alternate;
@@ -66,7 +69,6 @@ animation: swing ease-in-out .6s infinite alternate;
     transform-box: fill-box;
     left: calc(52% - .0rem);
 }
-
 #eye2
 {
 animation: swing ease-in-out .5s infinite alternate;
@@ -75,10 +77,9 @@ animation: swing ease-in-out .5s infinite alternate;
     left: calc(40% - .0rem);
 }
 
-
 #dust-paarticle path
 {
-  transform-box: fill-box;
+    transform-box: fill-box;
     transform-origin: right;
 }
 
@@ -87,12 +88,10 @@ animation: swing ease-in-out .5s infinite alternate;
     0% { transform: rotate(8deg); }
     100% { transform: rotate(-8deg); }
 }
-
-
 .position-set
 {
 position:absolute;
-  top:5%;
+  top: 15%;
 }
 
 	@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700,900');
